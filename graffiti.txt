@@ -39,11 +39,12 @@ yo anyone wanna play tic tac toe?
    -  |  -  |  -  
  _____|_____|_____
       |     |     
-   O  |  -  |  x 
+   O  |  -  |  O 
       |     |     
 Who did that lol
 !
 
 ok we starting over AGAIN im playing as O's- Logan
 
+you cant make 2 moves in 1 turn- Logan
 Round 1
