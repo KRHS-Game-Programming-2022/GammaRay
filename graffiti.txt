@@ -32,14 +32,10 @@ no he isn't, infact he is quite upset
 yo anyone wanna play tic tac toe?
 
       |     |     
-<<<<<<< HEAD
-    x |  -  |  x  
-=======
-   -  |  -  |  -  
->>>>>>> origin/master
+    x |  -  |  -  
  _____|_____|_____
       |     |     
-   -  |  -  |  -  
+   -  |  O  |  -  
  _____|_____|_____
       |     |     
    O  |  -  |  -  
@@ -47,10 +43,7 @@ yo anyone wanna play tic tac toe?
     
 Who did that lol
 !
-OK start over-logan
+
 
 
 Round 1
-
-
-Round 2
