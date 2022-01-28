@@ -33,13 +33,13 @@ yo anyone wanna play tic tac toe?
 
 
       |     |     
-   -  |  -  |  -  
+   x  |  -  |  -  
  _____|_____|_____
       |     |     
    -  |  -  |  -  
  _____|_____|_____
       |     |     
-   O  |  -  |  -  
+   O  |  -  |  x 
       |     |     
 Who did that lol
 !
