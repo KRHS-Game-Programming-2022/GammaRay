@@ -33,7 +33,7 @@ yo anyone wanna play tic tac toe?
 
 
       |     |     
-   -  |  -  |  -  
+   x  |  -  |  -  
  _____|_____|_____
       |     |     
    -  |  -  |  -  
