@@ -32,7 +32,7 @@ no he isn't, infact he is quite upset
 yo anyone wanna play tic tac toe?
 
       |     |     
-    x |  -  |  O  
+    x |  -  |  -  
  _____|_____|_____
       |     |     
    -  |  O  |  -  
@@ -41,9 +41,9 @@ yo anyone wanna play tic tac toe?
    O  |  -  |  -  
       |     |     
     
-
+Who did that lol
 !
 
-I win- logan
+
 
 Round 1
