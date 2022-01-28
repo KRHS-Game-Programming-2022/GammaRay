@@ -32,18 +32,18 @@ no he isn't, infact he is quite upset
 yo anyone wanna play tic tac toe?
 
       |     |     
-    x |  -  |  -  
+   -  |  -  |  -  
  _____|_____|_____
       |     |     
-   -  |  O  |  -  
+   -  |  -  |  -  
  _____|_____|_____
       |     |     
-   O  |  -  |  -  
+   -  |  -  |  -  
       |     |     
     
 Who did that lol
 !
-
+OK start over-logan
 
 
 Round 1
