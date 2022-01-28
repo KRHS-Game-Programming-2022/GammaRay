@@ -30,9 +30,15 @@ no he isn't, infact he is quite upset
 
 
 yo anyone wanna play tic tac toe?
+<<<<<<< HEAD
 
       |     |     
     x |  -  |  -  
+=======
+    
+      |     |
+   -  |  -  |  -  
+>>>>>>> origin/master
  _____|_____|_____
       |     |     
    -  |  O  |  -  
