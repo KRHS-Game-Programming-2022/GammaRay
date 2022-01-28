@@ -32,7 +32,7 @@ no he isn't, infact he is quite upset
 yo anyone wanna play tic tac toe?
 
       |     |     
-    x |  -  |  -  
+    x |  -  |  X  
  _____|_____|_____
       |     |     
    -  |  O  |  -  
