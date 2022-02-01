@@ -33,7 +33,7 @@ yo anyone wanna play tic tac toe?
 
 
       |     |     
-   x  |  -  |  -  
+   x  |  -  |  x  
  _____|_____|_____
       |     |     
    -  |  -  |  -  
@@ -45,6 +45,11 @@ Who did that lol
 !
 
 ok we starting over AGAIN im playing as O's- Logan
+<<<<<<< HEAD
 
 you cant make 2 moves in 1 turn- Logan
+=======
+Anyone wanna play hangman after this- Owen
+>>>>>>> origin/master
 Round 1
+
