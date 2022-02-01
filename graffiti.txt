@@ -52,7 +52,7 @@ Lets play hangman now -ruby
 logan can you make it like how you made the tic tac toe? -ruby
 
 
-
+E- Owen
 
 
 ok, take a guess- Logan
