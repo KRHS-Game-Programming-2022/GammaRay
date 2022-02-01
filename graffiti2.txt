@@ -1,1 +1,13 @@
 logan how did you make the tik tac toe?
+
+
+like this
+      |     |     
+   -  |  -  |  -  
+ _____|_____|_____
+      |     |     
+   -  |  -  |  -  
+ _____|_____|_____
+      |     |     
+   -  |  -  |  -  
+      |     |     
