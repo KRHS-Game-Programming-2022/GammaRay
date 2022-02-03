@@ -7,6 +7,7 @@ from Hud import*
 from Spawner import *
 from Laser import*
 from SpriteSheet import*
+from Character import*
 pygame.init()
 
 if not pygame.font:
@@ -26,12 +27,12 @@ counter = 0;
 
 
 
-tiles = loadLevel("levels/1.lvl")
+tiles = loadLevel("Levels/example.lvl")
 walls = tiles [0]
 spawners = tiles[1]
 
-player = Player(4, spawners[0].rect.center)
-player = [player]
+player = PlayerChar(4, spawners[0].rect.center)
+chars = [player]
  
  
 kills = 0
@@ -51,8 +52,8 @@ while True:
             elif event.key == pygame.K_d or event.key == pygame.K_RIGHT:
                 player.goKey("right")
             elif event.key == pygame.K_z:
-                balls += [player.shoot()]
-                print(len(balls))
+                chars += [player.shoot()]
+                print(len(chars))
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_w or event.key == pygame.K_UP:
                 player.goKey("sup")
@@ -67,36 +68,35 @@ while True:
     counter += 1
     if counter >= 10:
         counter = 0;
-        balls += [Ball([random.randint(-7,7), random.randint(-7,7)],
+        chars += [Char([random.randint(-7,7), random.randint(-7,7)],
                 [random.randint(100, 700),random.randint(100, 500)])
         ]
-        for ball in balls:
-            if balls[-1].ballCollide(ball):
-             balls.remove(balls[-1])
+        for char in chars:
+            if chars[-1].charCollide(char):
+             chars.remove(chars[-1])
              break   
             
         
-    for ball in balls:
-        ball.update(size)
+    for char in chars:
+        char.update(size)
       
-    timer.update(int(time/60))
-    score.update(kills)
+
         
         
-    for hittingBall in balls:
-        for hitBall in balls:
-            if hittingBall.ballCollide(hitBall):
-                if hitBall.kind != "player":
-                    if hittingBall.kind == "laser":
-                        hitBall.living = False
+    for hittingChar in chars:
+        for hitChar in chars:
+            if hittingChar.charCollide(hitChar):
+                if hitChar.kind != "player":
+                    if hittingChar.kind == "laser":
+                        hitChar.living = False
                         kills += 1
         for wall in walls:
-            hittingBall.wallTileCollide(wall)
+            hittingChar.wallTileCollide(wall)
                 
     
-    for ball in balls:
-        if not ball.living:
-            balls.remove(ball)
+    for char in chars:
+        if not char.living:
+            chars.remove(char)
             
         
         
@@ -106,12 +106,10 @@ while True:
     screen.fill((64, 128, 255))
     for spawner in spawners:
         screen.blit(spawner.image, spawner.rect)
-    for ball in balls:
-        screen.blit(ball.image, ball.rect)
+    for char in chars:
+        screen.blit(char.image, char.rect)
     for wall in walls:
         screen.blit(wall.image, wall.rect)
-    screen.blit(score.image, score.rect)
-    screen.blit(timer.image, timer.rect)
     pygame.display.flip()
     clock.tick(60)
     #print(clock.get_fps())
