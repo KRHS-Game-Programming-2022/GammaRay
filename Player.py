@@ -16,7 +16,7 @@ class PlayerChar(Char):
         self.rect = self.image.get_rect(center = startPos)
         
         self.maxSpeed = maxSpeed
-        self.kind = "player"
+        self.kind = "Player"
         self.dir = "up"
         
     def goKey(self, direction):

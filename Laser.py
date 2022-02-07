@@ -24,7 +24,7 @@ class Laser():
         self.rect = self.rect.move(startPos)
         
         
-        self.kind = "laser"
+        self.kind = "Laser"
         self.animationTimer = 0
         self.animationTimerMax = 60/45
         
@@ -72,8 +72,8 @@ class Laser():
                     if self.rect.bottom > other.rect.top:
                         if self.rect.top < other.rect.bottom:
                             if self.getDist(other) < self.rad + other.rad:
-                                if other.kind != "player":
-                                    if other.kind != "laser":
+                                if other.kind != "Player":
+                                    if other.kind != "Laser":
                                         self.living = False
                                 return True
         return False

@@ -86,8 +86,8 @@ while True:
     for hittingChar in chars:
         for hitChar in chars:
             if hittingChar.charCollide(hitChar):
-                if hitChar.kind != "player":
-                    if hittingChar.kind == "laser":
+                if hitChar.kind != "Player":
+                    if hittingChar.kind == "Laser":
                         hitChar.living = False
                         kills += 1
         for wall in walls:
