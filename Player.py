@@ -19,6 +19,9 @@ class PlayerChar(Char):
         self.kind = "Player"
         self.dir = "up"
         
+        self.gravity = 3
+        self.jumping = False
+        
     def goKey(self, direction):
         if direction == "left":
             self.dir = direction
@@ -30,8 +33,12 @@ class PlayerChar(Char):
             self.images = self.imagesRight
         elif direction == "up":
             self.dir = direction
-            self.speedy = -self.maxSpeed
-            self.images = self.imagesUp
+            if not self.jumping:
+                self.speedy = -50
+                self.move()
+                self.images = self.imagesUp
+                print("--------Jump---------")
+                self.jumping = True
         elif direction == "down":
             self.dir = direction
             self.speedy = self.maxSpeed
@@ -65,28 +72,51 @@ class PlayerChar(Char):
         if self.dir == "left":
             return Laser([-10,0], self.rect.center)
 
+    
+    def move(self):
+        self.speedy += self.gravity
+        Char.move(self)
+
     def wallCollide(self, size):
         width = size[0]
         height = size[1]
-        if not self.didBounceY:
-            if self.rect.bottom > size[1]:
-                self.speedy = -self.speedy
-                self.move()
-                self.speedy = 0
-            if self.rect.top < 0:
-                self.speedy = -self.speedy
-                self.move()
-                self.speedy = 0
         
-        if not self.didBounceX:
-            if self.rect.right > size[0]:
-                self.speedx = -self.speedx
-                self.move()
-                self.speedx = 0
-            if self.rect.left < 0:
-                self.speedx = -self.speedx
-                self.move()
-                self.speedx = 0
+        if self.rect.bottom > size[1]:
+            self.rect.bottom = size[1]
+            self.speedy = 0
+            print("hit botto")
+            self.jumping = False
+        
+        if self.rect.top < 0:
+            self.speedy = -self.speedy
+            self.move()
+            self.speedy = 0
+    
+        if self.rect.right > size[0]:
+            self.speedx = -self.speedx
+            self.move()
+            self.speedx = 0
+        if self.rect.left < 0:
+            self.speedx = -self.speedx
+            self.move()
+            self.speedx = 0
+            
+    def wallTileCollide(self, other):
+        if self.rect.right > other.rect.left:
+            if self.rect.left < other.rect.right:
+                if self.rect.bottom > other.rect.top:
+                    if self.rect.top < other.rect.bottom:
+                        print("thit block")
+                        if self.rect.bottom > other.rect.top:
+                            self.rect.bottom = other.rect.top-1
+                            self.speedy = 0
+                            self.jumping = False
+                            print("\thit top")
+                        else:
+                            self.speedx = -self.speedx
+                            self.speedy = -self.speedy
+                        return True
+        return False
             
 
     def EnemyCollide(self, other):
