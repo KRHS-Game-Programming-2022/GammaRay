@@ -2,10 +2,11 @@
 
 # ~ class Enemy():
     # ~ def __init__(self, speed = [0,0], startPos=[0,0]):
-        # ~ self.images = [pygame.image.load("images/Characters/Enemies/ball1"),
-                       # ~ pygame.image.load("images/Characters/Enemies/ball2"),
-                       # ~ pygame.image.load("images/Characters/Enemies/ball3"),
-                       # ~ pygame.image.load("images/Characters/Enemies/ball12")]
+        # ~ self.images = [pygame.image.load("Images/Characters/Enemies/Enemy1/ball1.png"),
+                       # ~ pygame.image.load("Images/Characters/Enemies/Enemy1/ball2.png"),
+                       # ~ pygame.image.load("Images/Characters/Enemies/Enemy1/ball3.png"),
+                       # ~ pygame.image.load("Images/Characters/Enemies/Enemy1/ball2.png")]
+                       
                        
         # ~ self.frame = 0
         # ~ self.frameMax = len(self.images) - 1
@@ -21,7 +22,7 @@
         # ~ self.didBounceX = False
         # ~ self.didBounceY = False
         
-        # ~ self.kind = "enemy"
+        # ~ self.kind = "Enemy"
         # ~ self.animationTimer = 0
         # ~ self.animationTimerMax = 60/10
         # ~ self.living = True
@@ -74,7 +75,7 @@
             
             
             
-    # ~ def EnemyCollide(self, other):
+    # ~ def charCollide(self, other):
         # ~ if self != other:
             # ~ if self.rect.right > other.rect.left:
                 # ~ if self.rect.left < other.rect.right:
@@ -113,5 +114,3 @@
         # ~ y1 = self.rect.centery 
         # ~ y2 = other.rect.centery 
         # ~ return math.sqrt ((x2-x1)**2 + (y2-y1)**2)
-
-

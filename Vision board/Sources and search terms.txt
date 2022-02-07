@@ -1,0 +1,4 @@
+ground.png: https://opengameart.org/content/old-frogatto-tile-art
+soldier.png: https://opengameart.org/content/space-soldier-m484-games
+sheet.png: https://opengameart.org/content/a-platformer-in-the-forest
+
