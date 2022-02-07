@@ -1,2 +1,2 @@
-Import pygame
+import pygame
 

@@ -33,5 +33,6 @@ def loadLevel (lev):
     return tiles
     
     
-    
-#loadLevel("levels/1.lvl")
+
+
+#loadLevel("Levels/example.lvl")

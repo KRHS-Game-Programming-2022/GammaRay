@@ -1,14 +1,14 @@
 import pygame, sys, math 
-from Ball import*
+from Character import*
 from Laser import*
 
-class Player(Player):
+class PlayerChar(Char):
     def __init__(self, maxSpeed=4, startPos=[0,0]):
-        Player.__init__(self, [0,0], startPos)
-        self.imagesLeft = [pygame.image.load ("images/Characters/Ray/")]
-        self.imagesRight = [pygame.image.load ("images/Characters/Ray/")]
-        self.imagesUp = [pygame.image.load ("images/Characters/Ray/")]
-        self.imagesDown = [pygame.image.load ("images/Characters/Ray/")]
+        Char.__init__(self, [0,0], startPos)
+        self.imagesLeft = [pygame.image.load ("Images/Characters/Ray/Ray-left.png")]
+        self.imagesRight = [pygame.image.load ("Images/Characters/Ray/Ray-right.png")]
+        self.imagesUp = [pygame.image.load ("Images/Characters/Ray/Ray-up.png")]
+        self.imagesDown = [pygame.image.load ("Images/Characters/Ray/Ray-down.png")]
         self.images = self.imagesUp
         self.frame = 0
         self.frameMax = len(self.images) - 1
