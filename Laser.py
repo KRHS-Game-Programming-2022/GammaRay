@@ -1,5 +1,6 @@
 import pygame, sys, math
 
+
 class Laser():
     def __init__(self, speed = [0,0], startPos=[0,0]):
         self.images = [pygame.image.load("Images/Characters/Ray/Laser/Laser1.png"),
@@ -27,10 +28,12 @@ class Laser():
         self.kind = "Laser"
         self.animationTimer = 0
         self.animationTimerMax = 60/45
-        
+      
         self.living = True
+
         
     def update(self, size):
+        
         self.move()
         
         self.wallCollide(size)

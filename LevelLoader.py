@@ -7,7 +7,7 @@ def loadLevel (lev):
     f.close()
     
     size = 50
-    offset = size/2
+    offset = size/1
     tiles = []
     newLines = []
     walls = []

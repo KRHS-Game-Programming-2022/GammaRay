@@ -3,7 +3,7 @@ from Character import*
 from Laser import*
 
 class PlayerChar(Char):
-    def __init__(self, maxSpeed=4, startPos=[0,0]):
+    def __init__(self, maxSpeed=20, startPos=[0,0]):
         Char.__init__(self, [0,0], startPos)
         self.imagesLeft = [pygame.image.load ("Images/Characters/Ray/Ray-left.png")]
         self.imagesRight = [pygame.image.load ("Images/Characters/Ray/Ray-right.png")]
@@ -21,7 +21,8 @@ class PlayerChar(Char):
         
         self.gravity = 3
         self.jumping = False
-        
+#-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=#
+#Player Movement
     def goKey(self, direction):
         if direction == "left":
             self.dir = direction
@@ -51,8 +52,8 @@ class PlayerChar(Char):
             self.speedy = 0
         elif direction == "sdown":
             self.speedy = 0
-            
-
+#-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=#
+#Player Health
     def health(self):
         if self != other:
             if self.rect.right > other.rect.left:
@@ -62,6 +63,8 @@ class PlayerChar(Char):
                             if self.getDist(other) < self.rad + other.rad:
                                 
                                 return True
+#-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=#
+#Player Laser
     def shoot(self):
         if self.dir == "up":
             return Laser([0,-10], self.rect.center)
@@ -71,7 +74,7 @@ class PlayerChar(Char):
             return Laser([10,0], self.rect.center)
         if self.dir == "left":
             return Laser([-10,0], self.rect.center)
-
+#-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=#
     
     def move(self):
         self.speedy += self.gravity
@@ -100,7 +103,7 @@ class PlayerChar(Char):
             self.speedx = -self.speedx
             self.move()
             self.speedx = 0
-            
+#Player Collision
     def wallTileCollide(self, other):
         if self.rect.right > other.rect.left:
             if self.rect.left < other.rect.right:
@@ -133,13 +136,13 @@ class PlayerChar(Char):
         return False
             
 
-    def EnemyCollide(self, other):
-        if self != other:
-            if self.rect.right > other.rect.left:
-                if self.rect.left < other.rect.right:
-                    if self.rect.bottom > other.rect.top:
-                        if self.rect.top < other.rect.bottom:
-                            if self.getDist(other) < self.rad + other.rad:
+    # ~ def EnemyCollide(self, other):
+        # ~ if self != other:
+            # ~ if self.rect.right > other.rect.left:
+                # ~ if self.rect.left < other.rect.right:
+                    # ~ if self.rect.bottom > other.rect.top:
+                        # ~ if self.rect.top < other.rect.bottom:
+                            # ~ if self.getDist(other) < self.rad + other.rad:
                                 
-                                return True
-        return False
+                                # ~ return True
+        # ~ return False

@@ -37,7 +37,8 @@ chars = [player]
  
 kills = 0
 time = 0
-
+#-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=#
+#Player movement
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -63,10 +64,11 @@ while True:
                 player.goKey("sleft")
             elif event.key == pygame.K_d or event.key == pygame.K_RIGHT:
                 player.goKey("sright")
-
+#-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=#
     time += 1
     counter += 1
-    if counter >= 10:
+    
+    if counter >= 50:
         counter = 0;
         chars += [Char([random.randint(-7,7), random.randint(-7,7)],
                 [random.randint(100, 700),random.randint(100, 500)])
@@ -76,6 +78,10 @@ while True:
              chars.remove(chars[-1])
              break   
             
+
+
+        
+        
         
     for char in chars:
         char.update(size)
