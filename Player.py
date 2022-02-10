@@ -109,16 +109,19 @@ class PlayerChar(Char):
                         print("thit block")
                         if self.rect.right > other.rect.left:
                             self.rect.right = other.rect.left-1
+                            print("\thit left")
                         elif self.rect.left < other.rect.right:
                             self.rect.left = other.rect.right+1
+                            print("\thit right")
                         if self.rect.bottom > other.rect.top:
                             self.rect.bottom = other.rect.top-1
                             self.speedy = 0
                             self.jumping = False
                             print("\thit top")
-                        else:
-                            self.speedx = -self.speedx
-                            self.speedy = -self.speedy
+                        elif self.rect.top < other.rect.bottom:
+                            self.rect.top = other.rect.bottom + 1
+                            self.apeedy = 0
+                            print("\thit bottom")
                         return True
         return False
             
