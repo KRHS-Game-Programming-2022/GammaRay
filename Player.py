@@ -107,21 +107,28 @@ class PlayerChar(Char):
                 if self.rect.bottom > other.rect.top:
                     if self.rect.top < other.rect.bottom:
                         print("thit block")
-                        if self.rect.right > other.rect.left:
-                            self.rect.right = other.rect.left-1
-                            print("\thit left")
-                        elif self.rect.left < other.rect.right:
-                            self.rect.left = other.rect.right+1
-                            print("\thit right")
-                        if self.rect.bottom > other.rect.top:
-                            self.rect.bottom = other.rect.top-1
-                            self.speedy = 0
-                            self.jumping = False
-                            print("\thit top")
-                        elif self.rect.top < other.rect.bottom:
-                            self.rect.top = other.rect.bottom + 1
-                            self.apeedy = 0
-                            print("\thit bottom")
+                        xdiff = self.rect.centerx - other.rect.centerx
+                        ydiff = self.rect.centery - other.rect.centery
+                        print(xdiff,ydiff)
+                        if abs(xdiff) > abs(ydiff):    #Left/Right collsion
+                            if xdiff < 0:
+                                self.rect.right = other.rect.left-1
+                                print("\t==============hit left")
+                            elif xdiff > 0:
+                                self.rect.left = other.rect.right+1
+                                print("\t==============hit right")
+                        else:                           #Up/Down collsions
+                            if ydiff <0:
+                                print(self.rect.bottom, other.rect.top)
+                                self.rect.bottom = other.rect.top-1
+                                self.speedy = 0
+                                self.jumping = False
+                                print("\thit top")
+                            elif ydiff>0:
+                                self.rect.top = other.rect.bottom + 1
+                                self.speedy = 0
+                                print("\t============hit bottom")
+                        
                         return True
         return False
             
