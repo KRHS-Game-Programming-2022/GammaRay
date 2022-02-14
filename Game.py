@@ -31,8 +31,9 @@ tiles = loadLevel("Levels/example.lvl")
 walls = tiles [0]
 spawners = tiles[1]
 
-player = PlayerChar(4, spawners[0].rect.center)
+player = PlayerChar(10, spawners[0].rect.center)
 chars = [player]
+
  
  
 kills = 0
@@ -68,15 +69,15 @@ while True:
     time += 1
     counter += 1
     
-    if counter >= 50:
-        counter = 0;
-        chars += [Char([random.randint(-7,7), random.randint(-7,7)],
-                [random.randint(100, 700),random.randint(100, 500)])
-        ]
-        for char in chars:
-            if chars[-1].charCollide(char):
-             chars.remove(chars[-1])
-             break   
+    # ~ if counter >= 50:
+        # ~ counter = 0;
+        # ~ chars += [Char([random.randint(-7,7), random.randint(-7,7)],
+                # ~ [random.randint(100, 700),random.randint(100, 500)])
+        # ~ ]
+        # ~ for char in chars:
+            # ~ if chars[-1].charCollide(char):
+             # ~ chars.remove(chars[-1])
+             # ~ break   
             
 
 
@@ -92,10 +93,15 @@ while True:
     for hittingChar in chars:
         for hitChar in chars:
             if hittingChar.charCollide(hitChar):
+                if hitChar.charCollide(hittingChar):
+                    kills += 1
+                
+                """
                 if hitChar.kind != "Player":
                     if hittingChar.kind == "Laser":
                         hitChar.living = False
                         kills += 1
+                """
         for wall in walls:
             hittingChar.wallTileCollide(wall)
                 

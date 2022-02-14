@@ -31,9 +31,13 @@ class Laser():
       
         self.living = True
 
+        self.lifeTimer = 0.5*60
         
     def update(self, size):
-        
+        self.lifeTimer -= 1
+        if self.lifeTimer < 0:
+            self.living = False
+        print ("bruh moment")
         self.move()
         
         self.wallCollide(size)
@@ -75,9 +79,9 @@ class Laser():
                     if self.rect.bottom > other.rect.top:
                         if self.rect.top < other.rect.bottom:
                             if self.getDist(other) < self.rad + other.rad:
-                                if other.kind != "Player":
-                                    if other.kind != "Laser":
-                                        self.living = False
+                                print(other.kind)
+                                if other.kind != "Player" and other.kind != "Laser":
+                                    self.living = False
                                 return True
         return False
         

@@ -45,13 +45,17 @@ class PlayerChar(Char):
             self.speedy = self.maxSpeed
             self.images = self.imagesDown
         elif direction == "sleft":
-            self.speedx = 0
+            if self.dir == "left":
+                self.speedx = 0
         elif direction == "sright":
-            self.speedx = 0
+            if self.dir == "right":
+                self.speedx = 0
         elif direction == "sup":
-            self.speedy = 0
+            if self.dir == "up":
+                self.speedy = 0
         elif direction == "sdown":
-            self.speedy = 0
+            if self.dir == "down":
+                self.speedy = 0
 #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=#
 #Player Health
     def health(self):
@@ -67,13 +71,13 @@ class PlayerChar(Char):
 #Player Laser
     def shoot(self):
         if self.dir == "up":
-            return Laser([0,-10], self.rect.center)
+            return Laser([0,-10+self.speedy], self.rect.center)
         if self.dir == "down":
-            return Laser([0,10], self.rect.center)
+            return Laser([0,10+self.speedy], self.rect.center)
         if self.dir == "right":
-            return Laser([10,0], self.rect.center)
+            return Laser([25+self.speedx,0], self.rect.center)
         if self.dir == "left":
-            return Laser([-10,0], self.rect.center)
+            return Laser([-25+self.speedx,0], self.rect.center)
 #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=#
     
     def move(self):
@@ -109,28 +113,28 @@ class PlayerChar(Char):
             if self.rect.left < other.rect.right:
                 if self.rect.bottom > other.rect.top:
                     if self.rect.top < other.rect.bottom:
-                        print("thit block")
+                        #print("thit block")
                         xdiff = self.rect.centerx - other.rect.centerx
                         ydiff = self.rect.centery - other.rect.centery
-                        print(xdiff,ydiff)
+                        #print(xdiff,ydiff)
                         if abs(xdiff) > abs(ydiff):    #Left/Right collsion
                             if xdiff < 0:
                                 self.rect.right = other.rect.left-1
-                                print("\t==============hit left")
+                                #print("\t==============hit left")
                             elif xdiff > 0:
                                 self.rect.left = other.rect.right+1
-                                print("\t==============hit right")
+                                #print("\t==============hit right")
                         else:                           #Up/Down collsions
                             if ydiff <0:
-                                print(self.rect.bottom, other.rect.top)
+                                #print(self.rect.bottom, other.rect.top)
                                 self.rect.bottom = other.rect.top-1
                                 self.speedy = 0
                                 self.jumping = False
-                                print("\thit top")
+                                #print("\thit top")
                             elif ydiff>0:
                                 self.rect.top = other.rect.bottom + 1
                                 self.speedy = 0
-                                print("\t============hit bottom")
+                                #print("\t============hit bottom")
                         
                         return True
         return False

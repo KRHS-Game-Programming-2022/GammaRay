@@ -88,7 +88,9 @@ class Char():
                                 # ~ if not self.didBounceY:
                                     # ~ self.speedy = -self.speedy
                                     # ~ self.didBounceY = True
-                                return True
+                                if other.kind == "Laser" and self.kind != "Player":
+                                    self.living = False
+                                    return True
         return False
     
     def wallTileCollide(self, other):
