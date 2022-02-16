@@ -27,7 +27,7 @@ counter = 0;
 
 
 
-tiles = loadLevel("Levels/example.lvl")
+tiles = loadLevel("Levels/Room1 .lvl")
 walls = tiles [0]
 spawners = tiles[1]
 
