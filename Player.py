@@ -80,6 +80,15 @@ class PlayerChar(Char):
             return Laser([-25+self.speedx,0], self.rect.center)
 #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=#
     
+    def update(self, size):
+        self.move()
+        
+        
+        self.animationTimer += 1
+        self.animate()
+        
+        return self.wallCollide(size)
+    
     def move(self):
         self.speedy += self.gravity
         Char.move(self)
@@ -100,13 +109,13 @@ class PlayerChar(Char):
             self.speedy = 0
     
         if self.rect.right > size[0]:
-            self.speedx = -self.speedx
-            self.move()
-            self.speedx = 0
+            self.rect.left = 0
+            return "right"
+                
         if self.rect.left < 0:
-            self.speedx = -self.speedx
-            self.move()
-            self.speedx = 0
+            self.rect.right = size[0]
+            return "left"
+            
 #Player Collision
     def wallTileCollide(self, other):
         if self.rect.right > other.rect.left:

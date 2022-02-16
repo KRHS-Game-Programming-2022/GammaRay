@@ -25,9 +25,10 @@ screen = pygame.display.set_mode(size)
 counter = 0;
 
 
+level = 1
+room = 1
 
-
-tiles = loadLevel("Levels/Room1 .lvl")
+tiles = loadLevel("Levels/Level"+str(level)+"-Room"+str(room)+".lvl")
 walls = tiles [0]
 spawners = tiles[1]
 
@@ -85,8 +86,18 @@ while True:
         
         
     for char in chars:
-        char.update(size)
-      
+        updateResult = char.update(size)
+        if updateResult != None:
+            if updateResult == "right":
+                room += 1
+                tiles = loadLevel("Levels/Level"+str(level)+"-Room"+str(room)+".lvl")
+                walls = tiles [0]
+                spawners = tiles[1]
+            elif updateResult == "left":
+                room -= 1
+                tiles = loadLevel("Levels/Level"+str(level)+"-Room"+str(room)+".lvl")
+                walls = tiles [0]
+                spawners = tiles[1]
 
         
         
