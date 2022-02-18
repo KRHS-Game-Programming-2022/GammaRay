@@ -1,12 +1,14 @@
 import pygame, sys, math 
 from Character import*
 from Laser import*
+from SpriteSheet import*
 
 class PlayerChar(Char):
     def __init__(self, maxSpeed=20, startPos=[0,0]):
         Char.__init__(self, [0,0], startPos)
+        spriteSheet = SpriteSheet("Vision Board/soldier.png")
         self.imagesLeft = [pygame.image.load ("Images/Characters/Ray/Ray-left.png")]
-        self.imagesRight = [pygame.image.load ("Images/Characters/Ray/Ray-right.png")]
+        self.imagesRight = spriteSheet.load_strip(pygame.Rect(7,456,51,50), 8, (0,0,0))
         self.imagesUp = [pygame.image.load ("Images/Characters/Ray/Ray-up.png")]
         self.imagesDown = [pygame.image.load ("Images/Characters/Ray/Ray-down.png")]
         self.images = self.imagesUp
@@ -31,11 +33,15 @@ class PlayerChar(Char):
             self.lastdir = direction
             self.speedx = -self.maxSpeed
             self.images = self.imagesLeft
+            self.frame = 0
+            self.frameMax = len(self.images) - 1
         elif direction == "right":
             self.dirx = direction
             self.lastdir = direction
             self.speedx = self.maxSpeed
             self.images = self.imagesRight
+            self.frame = 0
+            self.frameMax = len(self.images) - 1
         elif direction == "up":
             self.diry = direction
             self.lastdir = direction
@@ -43,6 +49,8 @@ class PlayerChar(Char):
                 self.speedy = -50
                 self.move()
                 self.images = self.imagesUp
+                self.frame = 0
+                self.frameMax = len(self.images) - 1
                 print("--------Jump---------")
                 self.jumping = True
         elif direction == "down":
@@ -50,6 +58,8 @@ class PlayerChar(Char):
             self.lastdir = direction
             self.speedy = self.maxSpeed
             self.images = self.imagesDown
+            self.frame = 0
+            self.frameMax = len(self.images) - 1
         elif direction == "sleft":
             if self.dirx == "left":
                 self.speedx = 0
