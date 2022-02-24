@@ -70,7 +70,7 @@ while True:
     time += 1
     counter += 1
     
-    if counter >= 1:
+    if counter >= 50:
         counter = 0;
         chars += [Char([random.randint(-7,7), random.randint(-7,7)],
                 [random.randint(100, 700),random.randint(100, 500)])
@@ -93,13 +93,13 @@ while True:
                 tiles = loadLevel("Levels/Level"+str(level)+"-Room"+str(room)+".lvl")
                 walls = tiles [0]
                 spawners = tiles[1]
-                enemyspawners = tiles[2]
+                enemyspawners = tiles[0]
             elif updateResult == "left":
                 room -= 1
                 tiles = loadLevel("Levels/Level"+str(level)+"-Room"+str(room)+".lvl")
                 walls = tiles [0]
                 spawners = tiles[1]
-                enemyspawners = tiles[2]
+                enemyspawners = tiles[0]
 
         
         
