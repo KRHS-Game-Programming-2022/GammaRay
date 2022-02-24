@@ -1,17 +1,10 @@
 import pygame, sys, math
+from SpriteSheet import*
 
 
 class Laser():
     def __init__(self, speed = [0,0], startPos=[0,0]):
-        self.images = [pygame.image.load("Images/Characters/Ray/Laser/Laser1.png"),
-                       pygame.image.load("Images/Characters/Ray/Laser/Laser2.png"),
-                       pygame.image.load("Images/Characters/Ray/Laser/Laser3.png"),
-                       pygame.image.load("Images/Characters/Ray/Laser/Laser4.png"),
-                       pygame.image.load("Images/Characters/Ray/Laser/Laser5.png"),
-                       pygame.image.load("Images/Characters/Ray/Laser/Laser6.png"),
-                       pygame.image.load("Images/Characters/Ray/Laser/Laser7.png"),
-                       pygame.image.load("Images/Characters/Ray/Laser/Laser8.png"),
-                       pygame.image.load("Images/Characters/Ray/Laser/Laser9.png")]
+        self.images = spriteSheet.load_strip(pygame.Rect(0,0,50,50), 3, (0,0,0))
                        
         self.frame = 0
         self.frameMax = len(self.images) - 1

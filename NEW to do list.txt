@@ -1,0 +1,9 @@
+1.finish sprite sheet code
+2.finish enemy spawner code
+3.finish level 1
+4.finish level 2
+5.finish level 3
+6.make laser sprite sheet
+7.add walking sounds
+8.add shooting sounds
+9.add background
