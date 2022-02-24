@@ -12,6 +12,7 @@ def loadLevel (lev):
     newLines = []
     walls = []
     spawners = []
+    enemyspawners = []
     
     for line in lines:
         newLine = ""
@@ -28,6 +29,8 @@ def loadLevel (lev):
                 walls += [Wall([x*size+offset, y*size+offset])]
             if c == "X":
                 spawners += [Spawner([x*size+offset, y*size+offset])]
+            if c == "E":
+                spawners += [EnemySpawner([x*size+offset, y*size+offset])]
     tiles = [walls,
             spawners]
     return tiles
