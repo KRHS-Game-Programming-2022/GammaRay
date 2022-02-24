@@ -1,12 +1,14 @@
 import pygame, sys, math 
 from Character import*
 from Laser import*
+from SpriteSheet import*
 
 class PlayerChar(Char):
     def __init__(self, maxSpeed=20, startPos=[0,0]):
         Char.__init__(self, [0,0], startPos)
+        spriteSheet = SpriteSheet("Vision Board/soldier.png")
         self.imagesLeft = [pygame.image.load ("Images/Characters/Ray/Ray-left.png")]
-        self.imagesRight = [pygame.image.load ("Images/Characters/Ray/Ray-right.png")]
+        self.imagesRight = spriteSheet.load_strip(pygame.Rect(7,456,51,50), 8, (0,0,0))
         self.imagesUp = [pygame.image.load ("Images/Characters/Ray/Ray-up.png")]
         self.imagesDown = [pygame.image.load ("Images/Characters/Ray/Ray-down.png")]
         self.images = self.imagesUp
@@ -17,7 +19,9 @@ class PlayerChar(Char):
         
         self.maxSpeed = maxSpeed
         self.kind = "Player"
-        self.dir = "up"
+        self.diry = "up"
+        self.dirx = "right"
+        self.lastdir = "up"
         
         self.gravity = 3
         self.jumping = False
@@ -25,36 +29,48 @@ class PlayerChar(Char):
 #Player Movement
     def goKey(self, direction):
         if direction == "left":
-            self.dir = direction
+            self.dirx = direction
+            self.lastdir = direction
             self.speedx = -self.maxSpeed
             self.images = self.imagesLeft
+            self.frame = 0
+            self.frameMax = len(self.images) - 1
         elif direction == "right":
-            self.dir = direction
+            self.dirx = direction
+            self.lastdir = direction
             self.speedx = self.maxSpeed
             self.images = self.imagesRight
+            self.frame = 0
+            self.frameMax = len(self.images) - 1
         elif direction == "up":
-            self.dir = direction
+            self.diry = direction
+            self.lastdir = direction
             if not self.jumping:
                 self.speedy = -50
                 self.move()
                 self.images = self.imagesUp
+                self.frame = 0
+                self.frameMax = len(self.images) - 1
                 print("--------Jump---------")
                 self.jumping = True
         elif direction == "down":
-            self.dir = direction
+            self.diry = direction
+            self.lastdir = direction
             self.speedy = self.maxSpeed
             self.images = self.imagesDown
+            self.frame = 0
+            self.frameMax = len(self.images) - 1
         elif direction == "sleft":
-            if self.dir == "left":
+            if self.dirx == "left":
                 self.speedx = 0
         elif direction == "sright":
-            if self.dir == "right":
+            if self.dirx == "right":
                 self.speedx = 0
         elif direction == "sup":
-            if self.dir == "up":
+            if self.diry == "up":
                 self.speedy = 0
         elif direction == "sdown":
-            if self.dir == "down":
+            if self.diry == "down":
                 self.speedy = 0
 #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=#
 #Player Health
@@ -70,13 +86,13 @@ class PlayerChar(Char):
 #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=#
 #Player Laser
     def shoot(self):
-        if self.dir == "up":
+        if self.lastdir == "up":
             return Laser([0,-10+self.speedy], self.rect.center)
-        if self.dir == "down":
+        if self.lastdir == "down":
             return Laser([0,10+self.speedy], self.rect.center)
-        if self.dir == "right":
+        if self.lastdir == "right":
             return Laser([25+self.speedx,0], self.rect.center)
-        if self.dir == "left":
+        if self.lastdir == "left":
             return Laser([-25+self.speedx,0], self.rect.center)
 #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=#
     

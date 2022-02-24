@@ -32,7 +32,7 @@ tiles = loadLevel("Levels/Level"+str(level)+"-Room"+str(room)+".lvl")
 walls = tiles [0]
 spawners = tiles[1]
 
-player = PlayerChar(10, spawners[0].rect.center)
+player = PlayerChar(15, spawners[0].rect.center)
 chars = [player]
 
  
