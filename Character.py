@@ -42,7 +42,7 @@ class Char():
         
         self.speed = [self.speedx,self.speedy]
         self.rect = self.rect.move(self.speed)
-        
+
         
     def animate(self):
         if self.animationTimer >= self.animationTimerMax:
