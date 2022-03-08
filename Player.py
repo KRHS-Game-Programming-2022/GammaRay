@@ -87,13 +87,13 @@ class PlayerChar(Char):
 #Player Laser
     def shoot(self):
         if self.lastdir == "up":
-            return Laser([0,-10+self.speedy], self.rect.center)
+            return Laser(self.lastdir, [0,-25], [self.rect.centerx,self.rect.centery-50])
         if self.lastdir == "down":
-            return Laser([0,10+self.speedy], self.rect.center)
+            return Laser(self.lastdir, [0,-25], [self.rect.centerx,self.rect.centery-50])
         if self.lastdir == "right":
-            return Laser([25+self.speedx,0], self.rect.center)
+            return Laser(self.lastdir, [25,0], [self.rect.centerx+50,self.rect.centery])
         if self.lastdir == "left":
-            return Laser([-25+self.speedx,0], self.rect.center)
+            return Laser(self.lastdir, [-25,0], [self.rect.centerx-50,self.rect.centery])
 #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=#
     
     def update(self, size):
