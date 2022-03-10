@@ -1,10 +1,15 @@
 import pygame, sys, math
 from SpriteSheet import*
+from Player import*
 
 
 class Laser():
-    def __init__(self, speed = [0,0], startPos=[0,0]):
+    def __init__(self, direction, speed = [0,0], startPos=[0,0]):
+        spriteSheet = SpriteSheet("Images\Characters\Ray\Laser\LaserSheet.png")
+
         self.images = spriteSheet.load_strip(pygame.Rect(0,0,50,50), 3, (0,0,0))
+
+            # ~ self.images = spriteSheet.load_strip(pygame.Rect(0,50,50,50), 3, (0,0,0))
                        
         self.frame = 0
         self.frameMax = len(self.images) - 1
@@ -20,7 +25,7 @@ class Laser():
         
         self.kind = "Laser"
         self.animationTimer = 0
-        self.animationTimerMax = 60/45
+        self.animationTimerMax = 60/6
       
         self.living = True
 
@@ -30,7 +35,6 @@ class Laser():
         self.lifeTimer -= 1
         if self.lifeTimer < 0:
             self.living = False
-        print ("bruh moment")
         self.move()
         
         self.wallCollide(size)
@@ -52,18 +56,19 @@ class Laser():
             else:
                 self.frame += 1
             self.image = self.images[self.frame]
+            print(self.frame)
         
     def wallCollide(self, size):
         width = size[0]
         height = size[1]
         if self.rect.bottom > size[1]:
-            self.speedy = -self.speedy
+            self.living=False
         if self.rect.top < 0:
-            self.speedy = -self.speedy
+            self.living=False
         if self.rect.right > size[0]:
-            self.speedx = -self.speedx
+            self.living=False
         if self.rect.left < 0:
-            self.speedx = -self.speedx
+            self.living=False
             
     def charCollide(self, other):
         if self != other:
