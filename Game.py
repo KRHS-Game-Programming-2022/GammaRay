@@ -56,6 +56,8 @@ while True:
                 player.goKey("right")
             elif event.key == pygame.K_z:
                 chars += [player.shoot()]
+            elif event.key == pygame.K_SPACE:
+                player.goKey("jump")
                 print(len(chars))
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_w or event.key == pygame.K_UP:

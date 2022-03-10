@@ -6,10 +6,10 @@ from Player import*
 class Laser():
     def __init__(self, direction, speed = [0,0], startPos=[0,0]):
         spriteSheet = SpriteSheet("Images\Characters\Ray\Laser\LaserSheet.png")
-
-        self.images = spriteSheet.load_strip(pygame.Rect(0,0,50,50), 3, (0,0,0))
-
-            # ~ self.images = spriteSheet.load_strip(pygame.Rect(0,50,50,50), 3, (0,0,0))
+        if direction == "left" or direction == "right":
+            self.images = spriteSheet.load_strip(pygame.Rect(0,0,50,50), 3, (0,0,0))
+        elif direction == "up" or direction == "jump":
+            self.images = spriteSheet.load_strip(pygame.Rect(0,50,50,50), 3, (0,0,0))
                        
         self.frame = 0
         self.frameMax = len(self.images) - 1
