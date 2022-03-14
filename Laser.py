@@ -31,6 +31,8 @@ class Laser():
 
         self.lifeTimer = 0.5*60
         
+        
+        
     def update(self, size):
         self.lifeTimer -= 1
         if self.lifeTimer < 0:

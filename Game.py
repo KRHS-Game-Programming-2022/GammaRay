@@ -8,7 +8,10 @@ from Spawner import *
 from Laser import*
 from SpriteSheet import*
 from Character import*
+
+pygame.mixer.pre_init(44100, -16, 2, 512)
 pygame.init()
+
 
 if not pygame.font:
     print("Warning, fonts disabled")
@@ -18,7 +21,6 @@ clock = pygame.time.Clock();
 
 size = [1300, 960]
 screen = pygame.display.set_mode(size)
-
 
 
 
@@ -35,7 +37,7 @@ spawners = tiles[1]
 player = PlayerChar(15, spawners[0].rect.center)
 chars = [player]
 
- 
+sounds = {"laser": pygame.mixer.Sound("Sounds/PlayerSounds/laser.ogg")}
  
 kills = 0
 time = 0
@@ -55,6 +57,7 @@ while True:
             elif event.key == pygame.K_d or event.key == pygame.K_RIGHT:
                 player.goKey("right")
             elif event.key == pygame.K_z:
+                sounds["laser"].play()
                 chars += [player.shoot()]
             elif event.key == pygame.K_SPACE:
                 player.goKey("jump")
