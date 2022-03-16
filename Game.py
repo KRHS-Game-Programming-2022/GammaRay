@@ -71,6 +71,10 @@ while True:
                 player.goKey("sleft")
             elif event.key == pygame.K_d or event.key == pygame.K_RIGHT:
                 player.goKey("sright")
+           
+
+          
+            
 #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=#
     time += 1
     counter += 1

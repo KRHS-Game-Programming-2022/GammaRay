@@ -12,12 +12,15 @@ class PlayerChar(Char):
         self.imagesUp = [pygame.image.load ("Images/Characters/Ray/Ray-up.png")]
         self.imagesDown = [pygame.image.load ("Images/Characters/Ray/Ray-down.png")]
         self.imagesJump = spriteSheet.load_strip(pygame.Rect(207,0,100,150), 1, (0,0,0))
+        self.imagesIdle = spriteSheet.image_at((0,0,100,150),(0,0,0))
         self.images = self.imagesUp
         self.frame = 0
         self.frameMax = len(self.images) - 1
         self.image = self.images[self.frame]
         self.rect = self.image.get_rect(center = startPos)
         
+        self.imagesIdle = spriteSheet.image_at((0,0,100,150),(0,0,0))
+       
         self.maxSpeed = maxSpeed
         self.kind = "Player"
         self.diry = "up"
@@ -57,6 +60,13 @@ class PlayerChar(Char):
             self.images = self.imagesDown
             self.frame = 0
             self.frameMax = len(self.images) - 1
+        elif direction == "idle":
+            self.diry = direction
+            self.lastdir = direction
+            self.speedy = self.maxSpeed
+            self.images = self.imagesIdle
+            self.frame = 0
+            self.frameMax = len(self.images) - 1
         elif direction =="jump":
             self.diry = direction
             self.lastdir = direction
@@ -82,6 +92,9 @@ class PlayerChar(Char):
                 self.speedy = 0
         elif direction == "sjump":
             if self.diry == "jump":
+                self.speedy = 0
+        elif direction == "sidle":
+            if self.diry == "idle":
                 self.speedy = 0
 #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=#
 #Player Health
