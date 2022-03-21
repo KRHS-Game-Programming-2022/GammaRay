@@ -7,12 +7,13 @@ class PlayerChar(Char):
     def __init__(self, maxSpeed=20, startPos=[0,0]):
         Char.__init__(self, [0,0], startPos)
         spriteSheet = SpriteSheet("Images/Characters/Ray/test.png")
-        self.imagesLeft = [pygame.image.load ("Images/Characters/Ray/Ray-left.png")]
-        self.imagesRight = spriteSheet.load_strip(pygame.Rect(0,0,50,50), 8, (0,0,0))
+        self.imagesLeft = spriteSheet.load_strip(pygame.Rect(0,0,100,150), 4, (0,0,0))
+        self.imagesRight = spriteSheet.load_strip(pygame.Rect(0,150,100,150), 4, (0,0,0))
         self.imagesUp = [pygame.image.load ("Images/Characters/Ray/Ray-up.png")]
         self.imagesDown = [pygame.image.load ("Images/Characters/Ray/Ray-down.png")]
         self.imagesJump = spriteSheet.load_strip(pygame.Rect(207,0,100,150), 1, (0,0,0))
-        self.imagesIdle = spriteSheet.image_at((0,0,100,150),(0,0,0))
+        self.imagesLeftidle = spriteSheet.load_strip(pygame.Rect(101,0,100,150),1,(0,0,0))
+        self.imagesRightidle = spriteSheet.load_strip(pygame.Rect(0,0,100,150), 1, (0,0,0))
         self.images = self.imagesUp
         self.frame = 0
         self.frameMax = len(self.images) - 1
@@ -60,13 +61,6 @@ class PlayerChar(Char):
             self.images = self.imagesDown
             self.frame = 0
             self.frameMax = len(self.images) - 1
-        elif direction == "idle":
-            self.diry = direction
-            self.lastdir = direction
-            self.speedy = self.maxSpeed
-            self.images = self.imagesIdle
-            self.frame = 0
-            self.frameMax = len(self.images) - 1
         elif direction =="jump":
             self.diry = direction
             self.lastdir = direction
@@ -79,9 +73,15 @@ class PlayerChar(Char):
                 print("--------Jump---------")
                 self.jumping = True
         elif direction == "sleft":
+            self.images = self.imagesLeftidle
+            self.frame=0
+            self.frameMax= len(self.images) - 1
             if self.dirx == "left":
                 self.speedx = 0
         elif direction == "sright":
+            self.images = self.imagesRightidle
+            self.frame=0
+            self.frameMax= len(self.images) - 1
             if self.dirx == "right":
                 self.speedx = 0
         elif direction == "sup":
@@ -92,9 +92,6 @@ class PlayerChar(Char):
                 self.speedy = 0
         elif direction == "sjump":
             if self.diry == "jump":
-                self.speedy = 0
-        elif direction == "sidle":
-            if self.diry == "idle":
                 self.speedy = 0
 #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=#
 #Player Health

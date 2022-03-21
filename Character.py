@@ -51,6 +51,7 @@ class Char():
                 self.frame = 0
             else:
                 self.frame += 1
+            print(self.frame, self.frameMax, len(self.images))
             self.image = self.images[self.frame]
         
     def wallCollide(self, size):
