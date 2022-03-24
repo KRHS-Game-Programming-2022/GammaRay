@@ -8,6 +8,7 @@ from Spawner import *
 from Laser import*
 from SpriteSheet import*
 from Character import*
+from Background import*
 
 pygame.mixer.pre_init(44100, -16, 2, 512)
 pygame.init()
@@ -137,7 +138,8 @@ while True:
         
         
         
-    screen.fill((64, 128, 255))
+    for bg in bgs:
+        screen.blit(bg.image, bg.rect)
     for spawner in spawners:
         screen.blit(spawner.image, spawner.rect)
     for char in chars:
