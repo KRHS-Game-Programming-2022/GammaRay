@@ -30,7 +30,7 @@ counter = 0;
 level = 3
 room = 1
 
-tiles = loadLevel("Levels/Level"+str(level)+"-Room"+str(room)+".lvl")
+tiles = loadLevel("Levels/Level"+str(level)+"-Room"+str(roo m)+".lvl")
 walls = tiles [0]
 spawners = tiles[1]
 
