@@ -1,6 +1,7 @@
 import pygame, sys, math
 from WallTile import *
 from Spawner import *
+from LevelChanger import *
 def loadLevel (lev):
     f = open(lev, 'r')
     lines = f.readlines()
@@ -13,6 +14,7 @@ def loadLevel (lev):
     walls = []
     spawners = []
     enemyspawners = []
+    interactables = []
     
     for line in lines:
         newLine = ""
@@ -31,8 +33,11 @@ def loadLevel (lev):
                 spawners += [Spawner([x*size+offset, y*size+offset])]
             if c == "E":
                 spawners += [EnemySpawner([x*size+offset, y*size+offset])]
+            if c == "+":
+                interactables += [LevelChanger([x*size+offset, y*size+offset], 1)]
     tiles = [walls,
-            spawners]
+            spawners,
+            interactables]
     return tiles
     
     

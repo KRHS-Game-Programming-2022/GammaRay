@@ -8,7 +8,8 @@ from Spawner import *
 from Laser import*
 from SpriteSheet import*
 from Character import*
-from Background import*
+#from Background import*
+from LevelChanger import*
 
 pygame.mixer.pre_init(44100, -16, 2, 512)
 pygame.init()
@@ -28,12 +29,13 @@ screen = pygame.display.set_mode(size)
 counter = 0;
 
 
-level = 3
+level = 1
 room = 1
 
 tiles = loadLevel("Levels/Level"+str(level)+"-Room"+str(room)+".lvl")
 walls = tiles [0]
 spawners = tiles[1]
+interactables = tiles[2]
 
 player = PlayerChar(15, spawners[0].rect.center)
 chars = [player]
@@ -104,11 +106,13 @@ while True:
                 walls = tiles [0]
                 spawners = tiles[1]
                 enemyspawners = tiles[0]
+                interactables = tiles[2]
             elif updateResult == "left":
                 room -= 1
                 tiles = loadLevel("Levels/Level"+str(level)+"-Room"+str(room)+".lvl")
                 walls = tiles [0]
                 spawners = tiles[1]
+                interactables = tiles[2]
                 enemyspawners = tiles[0]
 
         
@@ -127,6 +131,19 @@ while True:
                 """
         for wall in walls:
             hittingChar.wallTileCollide(wall)
+            
+        for interactable in interactables:
+            if hittingChar.kind == "Player" and hittingChar.wallTileCollide(interactable):
+                if interactable.kind == "LevelChanger":
+                    level += interactable.direction
+                    room = 1
+                    tiles = loadLevel("Levels/Level"+str(level)+"-Room"+str(room)+".lvl")
+                    walls = tiles [0]
+                    spawners = tiles[1]
+                    interactables = tiles[2]
+                    enemyspawners = tiles[0]
+                    player.rect.center = spawners[0].rect.center
+                
                 
     
     for char in chars:
@@ -137,15 +154,17 @@ while True:
         
         
         
-        
-    for bg in bgs:
-        screen.blit(bg.image, bg.rect)
+    screen.fill((0,0,0))
+    #for bg in bgs:
+    #    screen.blit(bg.image, bg.rect)
     for spawner in spawners:
         screen.blit(spawner.image, spawner.rect)
     for char in chars:
         screen.blit(char.image, char.rect)
     for wall in walls:
         screen.blit(wall.image, wall.rect)
+    for interactable in interactables:
+        screen.blit(interactable.image, interactable.rect)
     pygame.display.flip()
     clock.tick(60)
     #print(clock.get_fps())
