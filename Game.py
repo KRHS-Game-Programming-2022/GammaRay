@@ -62,7 +62,7 @@ while True:
                 chars += [player.shoot()]
             elif event.key == pygame.K_SPACE:
                 player.goKey("jump")
-                print(len(chars))
+                #print(len(chars))
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_w or event.key == pygame.K_UP:
                 player.goKey("sup")
@@ -138,8 +138,9 @@ while True:
         
         
         
-    for bg in bgs:
-        screen.blit(bg.image, bg.rect)
+    screen.fill((12,255,60))
+    # ~ for bg in bgs:
+        # ~ screen.blit(bg.image, bg.rect)
     for spawner in spawners:
         screen.blit(spawner.image, spawner.rect)
     for char in chars:
