@@ -9,6 +9,7 @@ from Laser import*
 from SpriteSheet import*
 from Character import*
 from Background import*
+from Sounds import*
 
 pygame.mixer.pre_init(44100, -16, 2, 512)
 pygame.init()
@@ -38,7 +39,7 @@ spawners = tiles[1]
 player = PlayerChar(15, spawners[0].rect.center)
 chars = [player]
 
-sounds = {"laser": pygame.mixer.Sound("Sounds/PlayerSounds/laser.ogg")}
+
  
 kills = 0
 time = 0
