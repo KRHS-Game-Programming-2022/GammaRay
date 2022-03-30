@@ -1,3 +1,5 @@
+# ~ import pygame, sys, math
+
 import pygame, sys, math
 
 class Background(bg):

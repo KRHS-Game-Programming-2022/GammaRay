@@ -8,7 +8,8 @@ from Spawner import *
 from Laser import*
 from SpriteSheet import*
 from Character import*
-#from Background import*
+from Background import*
+from Sounds import*
 from LevelChanger import*
 
 pygame.mixer.pre_init(44100, -16, 2, 512)
@@ -41,7 +42,10 @@ player = PlayerChar(15, spawners[0].rect.center)
 chars = [player]
 
 sounds = {"laser": pygame.mixer.Sound("Sounds/PlayerSounds/laser.ogg")}
- 
+
+bg=pygame.image.load("Images/Background/fake.png")
+bgrect=bg.get_rect()
+
 kills = 0
 time = 0
 #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=#
@@ -64,7 +68,7 @@ while True:
                 chars += [player.shoot()]
             elif event.key == pygame.K_SPACE:
                 player.goKey("jump")
-                print(len(chars))
+                #print(len(chars))
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_w or event.key == pygame.K_UP:
                 player.goKey("sup")
@@ -154,9 +158,11 @@ while True:
         
         
         
-    screen.fill((0,0,0))
-    #for bg in bgs:
-    #    screen.blit(bg.image, bg.rect)
+        
+    screen.fill((12,255,60))
+    screen.blit(bg,bgrect)
+    # ~ for bg in bgs:
+        # ~ screen.blit(bg.image, bg.rect)
     for spawner in spawners:
         screen.blit(spawner.image, spawner.rect)
     for char in chars:
