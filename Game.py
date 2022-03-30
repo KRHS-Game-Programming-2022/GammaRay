@@ -39,6 +39,12 @@ spawners = tiles[1]
 player = PlayerChar(15, spawners[0].rect.center)
 chars = [player]
 
+# ~ spriteSheet = SpriteSheet("Vision board/sheet.png")
+
+# ~ bg=pygame(spriteSheet.image_at(bg.rect(112,0,48,8),(0,0,0)))
+
+bg=pygame.image.load("Images/Background/fake.png")
+bgrect=bg.get_rect()
 
  
 kills = 0
@@ -140,6 +146,7 @@ while True:
         
         
     screen.fill((12,255,60))
+    screen.blit(bg,bgrect)
     # ~ for bg in bgs:
         # ~ screen.blit(bg.image, bg.rect)
     for spawner in spawners:
