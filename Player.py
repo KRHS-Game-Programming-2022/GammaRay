@@ -7,12 +7,12 @@ class PlayerChar(Char):
     def __init__(self, maxSpeed=20, startPos=[0,0]):
         Char.__init__(self, [0,0], startPos)
         spriteSheet = SpriteSheet("Images/Characters/Ray/test.png")
-        self.imagesLeft = spriteSheet.load_strip(pygame.Rect(0,0,100,150), 8, (0,0,0))
+        self.imagesLeft = spriteSheet.load_strip(pygame.Rect(0,300,100,150), 8, (0,0,0))
         self.imagesRight = spriteSheet.load_strip(pygame.Rect(0,150,100,150), 8, (0,0,0))
         self.imagesUp = spriteSheet.load_strip(pygame.Rect(207,0,100,150), 1, (0,0,0))
         self.imagesDown = spriteSheet.load_strip(pygame.Rect(0,300,100,150), 1, (0,0,0))
         self.imagesLeftDown = spriteSheet.load_strip(pygame.Rect(100,300,100,150), 1, (0,0,0))
-        self.imagesJump = spriteSheet.load_strip(pygame.Rect(207,0,100,150), 1, (0,0,0))
+        self.imagesJump = spriteSheet.load_strip(pygame.Rect(400,0,100,150), 2, (0,0,0))
         self.imagesLeftidle = spriteSheet.load_strip(pygame.Rect(101,0,100,150),1,(0,0,0))
         self.imagesRightidle = spriteSheet.load_strip(pygame.Rect(0,0,100,150), 1, (0,0,0))
         self.images = self.imagesUp
