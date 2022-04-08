@@ -8,7 +8,7 @@ from Spawner import *
 from Laser import*
 from SpriteSheet import*
 from Character import*
-from Background import*
+#from Background import*
 from Sounds import*
 from LevelChanger import*
 
