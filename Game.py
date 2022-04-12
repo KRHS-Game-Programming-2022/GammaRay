@@ -172,7 +172,7 @@ while True:
     for interactable in interactables:
         screen.blit(interactable.image, interactable.rect)
     pygame.display.flip()
-    clock.tick(20)
+    clock.tick(60)
     #print(clock.get_fps())
 
 

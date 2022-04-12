@@ -5,15 +5,15 @@ from Player import*
 
 class Laser():
     def __init__(self, direction, speed = [0,0], startPos=[0,0]):
-        spriteSheet = SpriteSheet("Images\Characters\Ray\Laser\LaserSheet.png")
+        spriteSheet = SpriteSheet("Images\Characters\Ray\Laser\DarkLaserSheet.png")
         if direction == "left" :
-            self.images = spriteSheet.load_strip(pygame.Rect(0,104,55,94), 8, (0,0,0))
+            self.images = spriteSheet.load_strip(pygame.Rect(0,104,58,94), 15, (0,0,0))
             self.frame = 0
             self.frameMax = len(self.images) - 1
             self.image = self.images[self.frame]
             self.rect = self.image.get_rect(midright=startPos)
         elif direction == "right":
-            self.images = spriteSheet.load_strip(pygame.Rect(0,104,55,94), 8, (0,0,0))
+            self.images = spriteSheet.load_strip(pygame.Rect(0,104,58,94), 15, (0,0,0))
             self.frame = 0
             self.frameMax = len(self.images) - 1
             self.image = self.images[self.frame]
