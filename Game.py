@@ -173,7 +173,7 @@ while True:
         screen.blit(wall.image, wall.rect)
     for interactable in interactables:
         screen.blit(interactable.image, interactable.rect)
-    screen.blit(hud.image, hud.rect)
+
     pygame.display.flip()
     clock.tick(60)
     #print(clock.get_fps())
