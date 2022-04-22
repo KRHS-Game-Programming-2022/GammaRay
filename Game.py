@@ -46,7 +46,7 @@ sounds = {"laser": pygame.mixer.Sound("Sounds/PlayerSounds/laser.ogg")}
 bg=pygame.image.load("Images/Background/fake.png")
 bgrect=bg.get_rect()
 
-hud = 1
+hud = Hud([0,0])
 
 kills = 0
 time = 0
@@ -88,15 +88,15 @@ while True:
     time += 1
     counter += 1
     
-    # ~ if counter >= 50:
-        # ~ counter = 0;
-        # ~ chars += [Char([random.randint(-7,7), random.randint(-7,7)],
-                # ~ [random.randint(100, 700),random.randint(100, 500)])
-        # ~ ]
-        # ~ for char in chars:
-            # ~ if chars[-1].charCollide(char):
-             # ~ chars.remove(chars[-1])
-             # ~ break   
+    if counter >= 50:
+        counter = 0;
+        chars += [Char([random.randint(-7,7), random.randint(-7,7)],
+                [random.randint(100, 700),random.randint(100, 500)])
+        ]
+        for char in chars:
+            if chars[-1].charCollide(char):
+             chars.remove(chars[-1])
+             break   
             
 
 
@@ -157,7 +157,7 @@ while True:
             chars.remove(char)
             
         
-        
+    hud.update()
         
         
         
@@ -173,6 +173,7 @@ while True:
         screen.blit(wall.image, wall.rect)
     for interactable in interactables:
         screen.blit(interactable.image, interactable.rect)
+    screen.blit(hud.image,hud.rect)
 
     pygame.display.flip()
     clock.tick(60)

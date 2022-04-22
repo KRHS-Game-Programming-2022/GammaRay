@@ -83,12 +83,12 @@ class Char():
                     if self.rect.bottom > other.rect.top:
                         if self.rect.top < other.rect.bottom:
                             if self.getDist(other) < self.rad + other.rad:
-                                # ~ if not self.didBounceX:
-                                    # ~ self.speedx = -self.speedx
-                                    # ~ self.didBounceX = True
-                                # ~ if not self.didBounceY:
-                                    # ~ self.speedy = -self.speedy
-                                    # ~ self.didBounceY = True
+                                if not self.didBounceX:
+                                    self.speedx = -self.speedx
+                                    self.didBounceX = True
+                                if not self.didBounceY:
+                                    self.speedy = -self.speedy
+                                    self.didBounceY = True
                                 if other.kind == "Laser" and self.kind != "Player":
                                     self.living = False
                                     return True

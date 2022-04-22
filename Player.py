@@ -12,7 +12,7 @@ class PlayerChar(Char):
         self.imagesUp = spriteSheet.load_strip(pygame.Rect(207,0,100,150), 1, (0,0,0))
         self.imagesDown = spriteSheet.load_strip(pygame.Rect(0,300,100,150), 1, (0,0,0))
         self.imagesLeftDown = spriteSheet.load_strip(pygame.Rect(100,300,100,150), 1, (0,0,0))
-        self.imagesJump = spriteSheet.load_strip(pygame.Rect(400,0,100,150), 2, (0,0,0))
+        self.imagesJump = spriteSheet.load_strip(pygame.Rect(400,0,100,150), 1, (0,0,0))
         self.imagesLeftidle = spriteSheet.load_strip(pygame.Rect(101,0,100,150),1,(0,0,0))
         self.imagesRightidle = spriteSheet.load_strip(pygame.Rect(0,0,100,150), 1, (0,0,0))
         self.images = self.imagesUp
@@ -31,6 +31,11 @@ class PlayerChar(Char):
         
         self.gravity = 3
         self.jumping = False
+        
+        self.HP = 20
+        self.living = True
+        
+        print (self.HP)
 #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=#
 #Player Movement
     def goKey(self, direction):
@@ -94,17 +99,8 @@ class PlayerChar(Char):
         elif direction == "sjump":
             if self.diry == "jump":
                 self.speedy = 0
-#-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=#
-#Player Health
-    def health(self):
-        if self != other:
-            if self.rect.right > other.rect.left:
-                if self.rect.left < other.rect.right:
-                    if self.rect.bottom > other.rect.top:
-                        if self.rect.top < other.rect.bottom:
-                            if self.getDist(other) < self.rad + other.rad:
-                                
-                                return True
+
+    
 #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=#
 #Player Laser
     def shoot(self):
@@ -129,6 +125,9 @@ class PlayerChar(Char):
         self.animate()
         
         return self.wallCollide(size)
+        
+        if self.HP <= 0:
+            self.living = False
     
     def move(self):
         self.speedy += self.gravity
@@ -190,13 +189,13 @@ class PlayerChar(Char):
         return False
             
 
-    # ~ def EnemyCollide(self, other):
-        # ~ if self != other:
-            # ~ if self.rect.right > other.rect.left:
-                # ~ if self.rect.left < other.rect.right:
-                    # ~ if self.rect.bottom > other.rect.top:
-                        # ~ if self.rect.top < other.rect.bottom:
-                            # ~ if self.getDist(other) < self.rad + other.rad:
-                                
-                                # ~ return True
-        # ~ return False
+    def EnemyCollide(self, other):
+        if self != other:
+            if self.rect.right > other.rect.left:
+                if self.rect.left < other.rect.right:
+                    if self.rect.bottom > other.rect.top:
+                        if self.rect.top < other.rect.bottom:
+                            if self.getDist(other) < self.rad + other.rad:
+                                self.HP -= 1
+                                return True
+        return False
