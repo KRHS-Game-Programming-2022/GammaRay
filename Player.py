@@ -35,6 +35,13 @@ class PlayerChar(Char):
         self.HP = 20
         self.living = True
         
+              
+        self.invincible = False
+        self.iFrame = 0
+        self.iFrameMax = 1*60;
+        
+        
+        
         print (self.HP)
 #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=#
 #Player Movement
@@ -76,7 +83,7 @@ class PlayerChar(Char):
                 self.images = self.imagesJump
                 self.frame = 0
                 self.frameMax = len(self.images) - 1
-                print("--------Jump---------")
+                # ~ print("--------Jump---------")
                 self.jumping = True
         elif direction == "sleft":
             self.images = self.imagesLeftidle
@@ -124,10 +131,17 @@ class PlayerChar(Char):
         self.animationTimer += 1
         self.animate()
         
-        return self.wallCollide(size)
-        
         if self.HP <= 0:
             self.living = False
+        if self.invincible:
+            self.iFrame += 1
+            if self.iFrame > self.iFrameMax:
+                self.iFrame = 0
+                self.invincible = False
+        
+        return self.wallCollide(size)
+        
+        
     
     def move(self):
         self.speedy += self.gravity
@@ -140,7 +154,7 @@ class PlayerChar(Char):
         if self.rect.bottom > size[1]:
             self.rect.bottom = size[1]
             self.speedy = 0
-            print("hit botto")
+            # ~ print("hit botto")
             self.jumping = False
         
         if self.rect.top < 0:
@@ -189,13 +203,16 @@ class PlayerChar(Char):
         return False
             
 
-    def EnemyCollide(self, other):
+    def enemyCollide(self, other):
         if self != other:
             if self.rect.right > other.rect.left:
                 if self.rect.left < other.rect.right:
                     if self.rect.bottom > other.rect.top:
                         if self.rect.top < other.rect.bottom:
                             if self.getDist(other) < self.rad + other.rad:
-                                self.HP -= 1
+                                if not self.invincible:
+                                    self.HP -= 1
+                                    print("HP is now: " + str(self.HP))
+                                    self.invincible = True
                                 return True
         return False

@@ -125,7 +125,9 @@ while True:
         
     for hittingChar in chars:
         for hitChar in chars:
-            if hittingChar.charCollide(hitChar):
+            if hittingChar.kind == "Player":
+                hittingChar.enemyCollide(hitChar)
+            elif hittingChar.charCollide(hitChar):
                 if hitChar.charCollide(hittingChar):
                     kills += 1
                 
@@ -157,7 +159,7 @@ while True:
             chars.remove(char)
             
         
-    hud.update()
+    hud.update(player.HP)
         
         
         

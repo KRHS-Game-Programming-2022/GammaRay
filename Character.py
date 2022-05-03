@@ -26,6 +26,7 @@ class Char():
         self.animationTimer = 0
         self.animationTimerMax = 60/10
         self.living = True
+  
         
     def update(self, size):
         self.move()
@@ -36,6 +37,8 @@ class Char():
         self.wallCollide(size)
         self.animationTimer += 1
         self.animate()
+        
+        
         
     
     def move(self):

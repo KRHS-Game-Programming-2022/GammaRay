@@ -1,5 +1,7 @@
 import pygame, sys, math
 from SpriteSheet import*
+from Player import*
+from Character import*
 
 class Hud():
     def __init__(self ,startPos=[0,0]):
@@ -20,16 +22,15 @@ class Hud():
     
 
     
-    def update(self):
+    def update(self, val):
         #self.rect = self.image.get_rect(topleft = self.rect.topleft) 
-        self.counter += 1
-        if self.counter > 15:
-            self.counter = 0
-            self.frame += 1
-            if self.frame >= len(self.images):
-                self.frame = 0
-            self.image = self.images[self.frame]
-            #print(self.frame)
+        self.frame = len(self.images)+1 - val
+        if self.frame < 0:
+            self.frame = 0
+        elif self.frame >= len(self.images):
+            self.frame = len(self.images)-1
+        self.image = self.images[self.frame]
+        #print(self.frame)
             
 
         
