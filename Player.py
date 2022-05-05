@@ -113,6 +113,8 @@ class PlayerChar(Char):
     def shoot(self):
         if self.lastdir == "up":
             return Laser(self.lastdir, [0,-25], [self.rect.centerx,self.rect.centery-50])
+        if self.lastdir == "down":
+            return Laser(self.lastdir, [0,25], [self.rect.centerx,self.rect.centery+50])
         if self.lastdir == "jump":
             return Laser(self.lastdir, [0,-25], [self.rect.centerx,self.rect.centery-50])
         if self.lastdir == "right":
@@ -210,7 +212,7 @@ class PlayerChar(Char):
                     if self.rect.bottom > other.rect.top:
                         if self.rect.top < other.rect.bottom:
                             if self.getDist(other) < self.rad + other.rad:
-                                if not self.invincible:
+                                if not self.invincible and other.kind != "Laser":
                                     self.HP -= 1
                                     print("HP is now: " + str(self.HP))
                                     self.invincible = True
