@@ -30,7 +30,7 @@ screen = pygame.display.set_mode(size)
 counter = 0;
 
 
-level = 4
+level = 5
 room = 1
 
 tiles = loadLevel("Levels/Level"+str(level)+"-Room"+str(room)+".lvl")
