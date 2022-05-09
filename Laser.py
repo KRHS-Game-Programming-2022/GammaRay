@@ -19,7 +19,13 @@ class Laser():
             self.image = self.images[self.frame]
             self.rect = self.image.get_rect(midleft=startPos)
         elif direction == "up" or direction == "jump":
-            self.images = spriteSheet.load_strip(pygame.Rect(0,50,50,50), 3, (0,0,0))
+            self.images = spriteSheet.load_strip(pygame.Rect(0,0,97,56), 15, (0,0,0))
+            self.frame = 0
+            self.frameMax = len(self.images) - 1
+            self.image = self.images[self.frame]
+            self.rect = self.image.get_rect(midbottom=startPos)
+        elif direction == "down": 
+            self.images = spriteSheet.load_strip(pygame.Rect(0,0,97,56), 15, (0,0,0))
             self.frame = 0
             self.frameMax = len(self.images) - 1
             self.image = self.images[self.frame]
@@ -71,7 +77,7 @@ class Laser():
             else:
                 self.frame += 1
             self.image = self.images[self.frame]
-            print(self.frame)
+            #print(self.frame)
         
     def wallCollide(self, size):
         width = size[0]
@@ -92,7 +98,7 @@ class Laser():
                     if self.rect.bottom > other.rect.top:
                         if self.rect.top < other.rect.bottom:
                             if self.getDist(other) < self.rad + other.rad:
-                                print(other.kind)
+                                #print(other.kind)
                                 if other.kind != "Player" and other.kind != "Laser":
                                     self.living = False
                                 return True
