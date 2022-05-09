@@ -158,7 +158,7 @@ class PlayerChar(Char):
         
     def animate(self):
         if self.animationTimer >= self.animationTimerMax:
-            print(self.imageKey)
+            #print(self.imageKey)
             self.images = self.imageList[self.imageKey]
             self.frameMax= len(self.images) - 1
             self.animationTimer = 0
@@ -166,7 +166,7 @@ class PlayerChar(Char):
                 self.frame = 0
             else:
                 self.frame += 1
-            print(self.frame, self.frameMax, len(self.images))
+           #print(self.frame, self.frameMax, len(self.images))
             self.image = self.images[self.frame]
     
     def move(self):
