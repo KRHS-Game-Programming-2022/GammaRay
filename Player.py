@@ -7,15 +7,33 @@ class PlayerChar(Char):
     def __init__(self, maxSpeed=20, startPos=[0,0]):
         Char.__init__(self, [0,0], startPos)
         spriteSheet = SpriteSheet("Images/Characters/Ray/test.png")
-        self.imagesLeft = spriteSheet.load_strip(pygame.Rect(0,300,100,150), 8, (0,0,0))
-        self.imagesRight = spriteSheet.load_strip(pygame.Rect(0,150,100,150), 8, (0,0,0))
-        self.imagesUp = spriteSheet.load_strip(pygame.Rect(207,0,100,150), 1, (0,0,0))
-        self.imagesDown = spriteSheet.load_strip(pygame.Rect(0,300,100,150), 1, (0,0,0))
-        self.imagesLeftDown = spriteSheet.load_strip(pygame.Rect(100,300,100,150), 1, (0,0,0))
-        self.imagesJump = spriteSheet.load_strip(pygame.Rect(400,0,100,150), 1, (0,0,0))
-        self.imagesLeftidle = spriteSheet.load_strip(pygame.Rect(101,0,100,150),1,(0,0,0))
-        self.imagesRightidle = spriteSheet.load_strip(pygame.Rect(0,0,100,150), 1, (0,0,0))
-        self.images = self.imagesUp
+        self.normalImageList = {
+            "left":spriteSheet.load_strip(pygame.Rect(0,300,100,150), 8, (0,0,0)),
+            "right":spriteSheet.load_strip(pygame.Rect(0,150,100,150), 8, (0,0,0)),
+            "down":spriteSheet.load_strip(pygame.Rect(207,0,100,150), 1, (0,0,0)),
+            "up":spriteSheet.load_strip(pygame.Rect(0,300,100,150), 1, (0,0,0)),
+            "left down":spriteSheet.load_strip(pygame.Rect(100,300,100,150), 1, (0,0,0)),
+            "jump":spriteSheet.load_strip(pygame.Rect(400,0,100,150), 1, (0,0,0)),
+            "left idle":spriteSheet.load_strip(pygame.Rect(101,0,100,150),1,(0,0,0)),
+            "right idle":spriteSheet.load_strip(pygame.Rect(0,0,100,150), 1, (0,0,0)),
+        }
+        
+        spriteSheet = SpriteSheet("Images/Characters/Ray/iFrames.png")
+        self.invicibleImageList = {
+            "left":spriteSheet.load_strip(pygame.Rect(0,300,100,150), 8, (0,0,0)),
+            "right":spriteSheet.load_strip(pygame.Rect(0,150,100,150), 8, (0,0,0)),
+            "down":spriteSheet.load_strip(pygame.Rect(207,0,100,150), 1, (0,0,0)),
+            "up":spriteSheet.load_strip(pygame.Rect(0,300,100,150), 1, (0,0,0)),
+            "left down":spriteSheet.load_strip(pygame.Rect(100,300,100,150), 1, (0,0,0)),
+            "jump":spriteSheet.load_strip(pygame.Rect(400,0,100,150), 1, (0,0,0)),
+            "left idle":spriteSheet.load_strip(pygame.Rect(101,0,100,150),1,(0,0,0)),
+            "right idle":spriteSheet.load_strip(pygame.Rect(0,0,100,150), 1, (0,0,0)),
+        }
+        
+        self.imageList = self.normalImageList
+        self.imageKey = "right idle"
+        self.images = self.imageList[self.imageKey]
+        
         self.frame = 0
         self.frameMax = len(self.images) - 1
         self.image = self.images[self.frame]
@@ -50,51 +68,44 @@ class PlayerChar(Char):
             self.dirx = direction
             self.lastdir = direction
             self.speedx = -self.maxSpeed
-            self.images = self.imagesLeft
+            self.imageKey = "left"
             self.frame = 0
-            self.frameMax = len(self.images) - 1
         elif direction == "right":
             self.dirx = direction
             self.lastdir = direction
             self.speedx = self.maxSpeed
-            self.images = self.imagesRight
+            self.imageKey = "right"
             self.frame = 0
-            self.frameMax = len(self.images) - 1
         elif direction == "up":
             self.diry = direction
             self.lastdir = direction
             self.speedy = self.maxSpeed
-            self.images = self.imagesUp
+            self.imageKey = "up"
             self.frame = 0
-            self.frameMax = len(self.images) - 1
         elif direction == "down":
             self.diry = direction
             self.lastdir = direction
             self.speedy = self.maxSpeed
-            self.images = self.imagesDown
+            self.imageKey = "down"
             self.frame = 0
-            self.frameMax = len(self.images) - 1
         elif direction =="jump":
             self.diry = direction
             self.lastdir = direction
             if not self.jumping:
                 self.speedy = -50
                 self.move()
-                self.images = self.imagesJump
+                self.imageKey = "jump"
                 self.frame = 0
-                self.frameMax = len(self.images) - 1
                 # ~ print("--------Jump---------")
                 self.jumping = True
         elif direction == "sleft":
-            self.images = self.imagesLeftidle
+            self.imageKey = "left idle"
             self.frame=0
-            self.frameMax= len(self.images) - 1
             if self.dirx == "left":
                 self.speedx = 0
         elif direction == "sright":
-            self.images = self.imagesRightidle
+            self.imageKey = "right idle"
             self.frame=0
-            self.frameMax= len(self.images) - 1
             if self.dirx == "right":
                 self.speedx = 0
         elif direction == "sup":
@@ -140,10 +151,23 @@ class PlayerChar(Char):
             if self.iFrame > self.iFrameMax:
                 self.iFrame = 0
                 self.invincible = False
+                self.imageList = self.normalImageList
+               
         
         return self.wallCollide(size)
         
-        
+    def animate(self):
+        if self.animationTimer >= self.animationTimerMax:
+            print(self.imageKey)
+            self.images = self.imageList[self.imageKey]
+            self.frameMax= len(self.images) - 1
+            self.animationTimer = 0
+            if self.frame >= self.frameMax:
+                self.frame = 0
+            else:
+                self.frame += 1
+            print(self.frame, self.frameMax, len(self.images))
+            self.image = self.images[self.frame]
     
     def move(self):
         self.speedy += self.gravity
@@ -204,6 +228,7 @@ class PlayerChar(Char):
                         return True
         return False
             
+    
 
     def enemyCollide(self, other):
         if self != other:
@@ -216,5 +241,6 @@ class PlayerChar(Char):
                                     self.HP -= 1
                                     print("HP is now: " + str(self.HP))
                                     self.invincible = True
+                                    self.imageList = self.invicibleImageList
                                 return True
         return False
