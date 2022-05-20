@@ -77,7 +77,7 @@ class Laser():
             else:
                 self.frame += 1
             self.image = self.images[self.frame]
-            print(self.frame)
+            #print(self.frame)
         
     def wallCollide(self, size):
         width = size[0]
@@ -98,7 +98,7 @@ class Laser():
                     if self.rect.bottom > other.rect.top:
                         if self.rect.top < other.rect.bottom:
                             if self.getDist(other) < self.rad + other.rad:
-                                print(other.kind)
+                                #print(other.kind)
                                 if other.kind != "Player" and other.kind != "Laser":
                                     self.living = False
                                 return True
