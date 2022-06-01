@@ -125,32 +125,51 @@ class Laser():
         return math.sqrt ((x2-x1)**2 + (y2-y1)**2)
 
 # ~ class WaveLaser():
-        # ~ def __init__(self, direction, speed = [0,0], startPos=[0,0]):
-        # ~ spriteSheet = SpriteSheet("Images\Characters\Ray\Laser\LaserSheet.png")
-        # ~ if direction == "left" or direction == "right":
-            # ~ self.images = spriteSheet.load_strip(pygame.Rect(0,119,54,64), 8, (0,0,0))
+        # ~def __init__(self, direction, speed = [0,0], startPos=[0,0]):
+        # ~ spriteSheet = SpriteSheet("Images\Characters\Ray\Laser\DarkLaserSheet.png")
+        # ~ if direction == "left" :
+            # ~ self.images = spriteSheet.load_strip(pygame.Rect(0,104,58,94), 15, (0,0,0))
+            # ~ self.frame = 0
+            # ~ self.frameMax = len(self.images) - 1
+            # ~ self.image = self.images[self.frame]
+            # ~ self.rect = self.image.get_rect(midright=startPos)
+        # ~ elif direction == "right":
+            # ~ self.images = spriteSheet.load_strip(pygame.Rect(0,104,58,94), 15, (0,0,0))
+            # ~ self.frame = 0
+            # ~ self.frameMax = len(self.images) - 1
+            # ~ self.image = self.images[self.frame]
+            # ~ self.rect = self.image.get_rect(midleft=startPos)
         # ~ elif direction == "up" or direction == "jump":
-            # ~ self.images = spriteSheet.load_strip(pygame.Rect(0,50,55,22), 3, (0,0,0))
+            # ~ self.images = spriteSheet.load_strip(pygame.Rect(0,0,97,56), 15, (0,0,0))
+            # ~ self.frame = 0
+            # ~ self.frameMax = len(self.images) - 1
+            # ~ self.image = self.images[self.frame]
+            # ~ self.rect = self.image.get_rect(midbottom=startPos)
+        # ~ elif direction == "down": 
+            # ~ self.images = spriteSheet.load_strip(pygame.Rect(0,0,97,56), 15, (0,0,0))
+            # ~ self.frame = 0
+            # ~ self.frameMax = len(self.images) - 1
+            # ~ self.image = self.images[self.frame]
+            # ~ self.rect = self.image.get_rect(midbottom=startPos)
+            
                        
-        # ~ self.frame = 0
-        # ~ self.frameMax = len(self.images) - 1
-        # ~ self.image = self.images[self.frame]
-        # ~ self.rect = self.image.get_rect()
+        
+        
         # ~ self.speedx = speed[0]
         # ~ self.speedy = speed[1]
         # ~ self.speed = [self.speedx,self.speedy]
         # ~ self.rad = (self.rect.height/2 + self.rect.width/2)/2
         
-        # ~ self.rect = self.rect.move(startPos)
+        # ~ #self.rect = self.rect.move(startPos)
         
         
         # ~ self.kind = "Laser"
         # ~ self.animationTimer = 0
-        # ~ self.animationTimerMax = 60/6
+        # ~ self.animationTimerMax = 60/30
       
         # ~ self.living = True
 
-        # ~ self.lifeTimer = 0.5*60
+        # ~ self.lifeTimer = 2*60
         
         
         
@@ -179,7 +198,7 @@ class Laser():
             # ~ else:
                 # ~ self.frame += 1
             # ~ self.image = self.images[self.frame]
-            # ~ print(self.frame)
+            # ~ #print(self.frame)
         
     # ~ def wallCollide(self, size):
         # ~ width = size[0]
@@ -200,7 +219,7 @@ class Laser():
                     # ~ if self.rect.bottom > other.rect.top:
                         # ~ if self.rect.top < other.rect.bottom:
                             # ~ if self.getDist(other) < self.rad + other.rad:
-                                # ~ print(other.kind)
+                                # ~ #print(other.kind)
                                 # ~ if other.kind != "Player" and other.kind != "Laser":
                                     # ~ self.living = False
                                 # ~ return True
