@@ -2,10 +2,11 @@ import pygame, sys, math
 
 class Char():
     def __init__(self, speed = [0,0], startPos=[0,0]):
-        self.images = [pygame.image.load("Images/Characters/Enemies/Enemy1/ball1.png"),
-                       pygame.image.load("Images/Characters/Enemies/Enemy1/ball2.png"),
-                       pygame.image.load("Images/Characters/Enemies/Enemy1/ball3.png"),
-                       pygame.image.load("Images/Characters/Enemies/Enemy1/ball2.png")]
+        self.images = [pygame.image.load("Images/Characters/Enemies/Enemy1/ball1.png").convert_alpha(),
+                       pygame.image.load("Images/Characters/Enemies/Enemy1/ball2.png").convert_alpha(),
+                       pygame.image.load("Images/Characters/Enemies/Enemy1/ball3.png").convert_alpha(),
+                       pygame.image.load("Images/Characters/Enemies/Enemy1/ball2.png").convert_alpha()]
+                       
                        
                        
         self.frame = 0
