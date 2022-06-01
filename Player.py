@@ -45,7 +45,8 @@ class PlayerChar(Char):
         self.kind = "Player"
         self.diry = "up"
         self.dirx = "right"
-        self.lastdir = "up"
+        self.lastdirx = "right"
+        self.lastdiry = "up"
         
         self.gravity = 3
         self.jumping = False
@@ -111,6 +112,7 @@ class PlayerChar(Char):
         elif direction == "sup":
             if self.diry == "up":
                 self.speedy = 0
+                self.diry = None
         elif direction == "sdown":
             if self.diry == "down":
                 self.speedy = 0
@@ -122,15 +124,17 @@ class PlayerChar(Char):
 #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=#
 #Player Laser
     def shoot(self):
-        if self.lastdir == "up":
+        if self.diry == "up":
+            return Laser("up", [0,-25], [self.rect.centerx,self.rect.centery-50])
+        elif self.lastdir == "up":
             return Laser(self.lastdir, [0,-25], [self.rect.centerx,self.rect.centery-50])
-        if self.lastdir == "down":
+        elif self.lastdir == "down":
             return Laser(self.lastdir, [0,25], [self.rect.centerx,self.rect.centery+50])
-        if self.lastdir == "jump":
+        elif self.lastdir == "jump":
             return Laser(self.lastdir, [0,-25], [self.rect.centerx,self.rect.centery-50])
-        if self.lastdir == "right":
+        elif self.lastdir == "right":
             return Laser(self.lastdir, [25,0], [self.rect.centerx+50,self.rect.centery])
-        if self.lastdir == "left":
+        elif self.lastdir == "left":
             return Laser(self.lastdir, [-25,0], [self.rect.centerx-50,self.rect.centery])
         else: 
             print("BAD DIRECTION")
